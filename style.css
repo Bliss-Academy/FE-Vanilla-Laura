@@ -24,16 +24,11 @@ button {
   cursor: pointer;
 }
 
-main {
-  display: grid;
-  grid-template-areas:
-    'aside header'
-    'aside main'
-    'aside footer';
-  grid-template-columns: 20rem auto;
-  grid-template-rows: 5rem auto 5rem;
-  width: 100%;
-  height: 100%;
+body {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
   background-color: var(--GRAY_100);
 }
 
@@ -42,7 +37,8 @@ span {
 }
 
 aside {
-  grid-area: aside;
+  width: 20rem;
+  height: 100%;
   background-color: var(--GRAY_200);
   display: flex;
   flex-direction: column;
@@ -84,6 +80,7 @@ aside button:hover {
 
 aside nav {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 1.7rem;
 }
@@ -95,7 +92,6 @@ aside svg {
 aside div {
   width: 100%;
   display: flex;
-  flex: 1;
   justify-content: space-between;
   align-items: flex-end;
   padding: 0 1.7rem 1.5rem;
@@ -105,8 +101,14 @@ aside div svg {
   width: 2.4rem;
 }
 
+.container {
+  flex: 1;
+
+}
+
 header {
-  grid-area: header;
+  height: 5rem;
+  margin-bottom: 4rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -119,47 +121,50 @@ header svg {
   color: var(--PURPLE);
 }
 
-.container {
-  grid-area: main;
-  padding: 4rem auto 2.7rem;
-  margin: 0 auto;
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding-left: 8rem;
+  padding-right: 6rem;
 }
 
-.container h1 {
+main h1 {
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
   color: var(--PURPLE);
-  margin: 4rem 0;
+  margin-bottom: 4rem;
 }
 
-.container article {
+main article {
   text-align: center;
   background-color: #fff;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   border-radius: 1rem;
 }
 
-.container section .cards {
+main section .cards {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
-  gap: 10rem;
+  justify-content: space-between;
+  gap: 2.4rem;
 }
 
-.container section article h2 {
+main section article h2 {
   font-size: 20px;
   line-height: 24px;
 }
 
-.container section > h2 {
+main section > h2 {
   font-size: 16px;
   line-height: 19px;
   color: var(--PURPLE);
   margin-bottom: 2.4rem;
-  margin-top: 4rem;
 }
 
-.container section .cards article {
+main section .cards article {
   width: 30rem;
   padding: 1.2rem 2.4rem 2.7rem;
 }
@@ -176,7 +181,7 @@ header svg {
   color: var(--PURPLE);
 }
 
-.container section .cards article div {
+main section .cards article div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -185,6 +190,11 @@ header svg {
   line-height: 3.9rem;
   align-items: center;
   margin-top: 1.7rem;
+}
+
+
+.graph {
+  height: 28rem;
 }
 
 section img {
@@ -241,7 +251,7 @@ section img {
 }
 
 footer {
-  grid-area: footer;
+  height: 5rem;
   background: #ffffff;
   box-shadow: 2px -2px 4px rgba(0, 0, 0, 0.25);
   text-align: center;
@@ -249,3 +259,4 @@ footer {
   color: var(--GRAY_400);
   padding-top: 2.1rem;
 }
+
