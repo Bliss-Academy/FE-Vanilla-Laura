@@ -28,6 +28,8 @@ body {
   background-color: var(--GRAY_100);
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .container {
@@ -95,7 +97,6 @@ main section > h2 {
 }
 
 main section .cards article {
-  width: 30rem;
   padding: 1.2rem 2.4rem 2.7rem;
 }
 
@@ -237,6 +238,10 @@ aside {
     flex-direction: row;
     justify-content: space-between;
     gap: 10rem;
+  }
+
+  main section .cards article {
+    width: 30rem;
   }
 
   section article {
