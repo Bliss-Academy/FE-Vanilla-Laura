@@ -28,7 +28,6 @@ body {
   background-color: var(--GRAY_100);
   width: 100vw;
   height: 100vh;
-  overflow-x: hidden;
   overflow-y: scroll;
 }
 
@@ -55,6 +54,13 @@ header button {
   color: var(--PURPLE);
 }
 
+.menu--btn__hamburger {
+  display: flex;
+  color: var(--GREEN_200);
+  position: absolute;
+  left: 4rem;
+}
+
 main {
   padding: 0 4.5rem;
   display: flex;
@@ -74,6 +80,12 @@ section .cards {
   flex-direction: column;
   justify-content: space-between;
   gap: 2.4rem;
+}
+
+.dropDown-content {
+  animation-name: cardDropDown;
+  animation-duration: 1s;
+  transition: ease-out;
 }
 
 main h1 {
@@ -230,6 +242,10 @@ aside {
     display: none;
   }
 
+  .menu--btn__hamburger{
+    display: none;
+  }
+
   main {
     flex: 1;
     padding: 0 6rem 0 8rem;
@@ -340,4 +356,20 @@ aside {
   aside div svg {
     width: 2.4rem;
   }
+}
+
+@keyframes cardDropDown {
+
+  0% {
+    opacity: 0;
+    position: relative;
+    top: -10px;
+  }
+
+  100% {
+    opacity: 1;
+    position: relative;
+    top: 0px;
+  }
+  
 }
