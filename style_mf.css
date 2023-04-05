@@ -12,7 +12,7 @@
   --GRAY_400: #9d9d9d;
   --GRAY_500: #6d6d6d;
   --GRAY_100: #f4f6f8;
-  --RED: #fb6c6c;
+  --RED_100: #fb6c6c;
   --GREEN_100: #41d158;
   --GREEN_200: #0bac9b;
   --PURPLE: #7600d2;
@@ -54,7 +54,7 @@ header button {
   color: var(--PURPLE);
 }
 
-.menu--btn__hamburger {
+.menu__btn__hamburger {
   display: flex;
   color: var(--GREEN_200);
   position: absolute;
@@ -117,7 +117,7 @@ main section .cards article {
 }
 
 .expenses {
-  color: var(--RED);
+  color: var(--RED_100);
 }
 
 .balance {
@@ -216,7 +216,8 @@ aside {
   display: none;
 }
 
-@media (min-width: 700px) {
+
+@media (min-width: 898px) {
   body {
     height: 100vh;
     display: flex;
@@ -242,7 +243,7 @@ aside {
     display: none;
   }
 
-  .menu--btn__hamburger{
+  .menu__btn__hamburger{
     display: none;
   }
 
@@ -252,13 +253,13 @@ aside {
   }
 
   section .cards {
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 10rem;
+    flex-direction: column;
+    gap: 2.4rem;
+    width: 100%;
   }
 
   main section .cards article {
-    width: 30rem;
+    width: 100%;
   }
 
   section article {
@@ -324,13 +325,17 @@ aside {
     font-size: 14px;
   }
 
-  aside button:hover {
+  aside button:hover,
+  .menu__nav_btn--active {
     border-left: 3px solid var(--GREEN_200);
     backdrop-filter: brightness(0.9);
   }
 
+
   aside button:hover svg,
-  aside button:hover {
+  aside button:hover,
+  .menu__nav_btn--active,
+  .menu__nav_btn--active svg {
     color: var(--GREEN_200);
   }
 
@@ -338,7 +343,7 @@ aside {
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 1.7rem;
+    gap: .8rem;
   }
 
   aside svg {
@@ -355,6 +360,14 @@ aside {
 
   aside div svg {
     width: 2.4rem;
+  }
+}
+
+@media(min-width:1216px){
+  section .cards {
+    margin-right: 0;
+    flex-direction: row;
+    gap: 10rem;
   }
 }
 

@@ -1,0 +1,150 @@
+.transactions__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 3rem;
+}
+
+.transactions__header h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.transaction__btn__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 3.3rem;
+}
+
+.transaction__btn__list button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button.income {
+  color: var(--GREEN_100);
+}
+
+button.expense {
+  color: var(--RED_100);
+}
+
+main {
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 1rem;
+  flex: 1;
+  margin: 0 4.1rem 8.3rem 4.8rem;
+  padding: 1.5rem 0;
+  color: var(--GRAY_500);
+}
+
+table {
+  width: 100%;
+  margin-top: 0.9rem;
+  border-spacing: 0;
+}
+
+thead tr {
+  background-color: var(--GRAY_300);
+}
+
+tr {
+  display: flex;
+  flex-direction: row;
+  padding: 1.3rem 1.8rem;
+  justify-content: space-between;
+  border-bottom: 0.3px solid var(--GRAY_400);
+}
+
+table svg {
+  color: var(--GRAY_500);
+}
+
+td {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+td h2 {
+  font-size: 1.2rem;
+}
+
+.table__action {
+  max-width: 10rem;
+  width: 100%;
+  gap: 1rem;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.table__value {
+  max-width: 8rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.table__description {
+  margin: auto 0;
+  align-items: start;
+  text-align: left;
+  max-height: 8rem;
+  overflow-y: hidden;
+  min-width: 10rem;
+  display: flex;
+  flex: 1;
+}
+
+.table__date,
+.table__date p {
+  width: 100%;
+  max-width: 8rem;
+  text-align: left;
+}
+
+.table__date p {
+  scale: 75%;
+}
+
+@media (min-width: 898px) {
+  .table__description {
+    align-items: center;
+  }
+
+  .table__date span:nth-child(4) {
+    display: flex;
+  }
+
+  .table__action {
+    flex-direction: row;
+  }
+
+  .table__date p {
+    scale: 100%;
+  }
+
+  .table__action,
+  .table__date,
+  .table__value {
+    flex-shrink: 1;
+  }
+
+  .table__action {
+    flex-direction: row;
+  }
+
+  .table__description {
+    display: flex;
+    flex: 1;
+    flex-grow: 2;
+  }
+
+  tr {
+    gap: 8.3rem;
+  }
+}
