@@ -14,13 +14,12 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script src="./script.js"></script>
     <title>Bliss-Economy</title>
   </head>
   <body>
-    <aside>
-      <img src="/assets/logo.svg" alt="logo Bliss-Economy" class="logo" />
-
+    <aside class="aside--start">
+      <header class="aside__header">
+      </header>
       <nav>
         <button class="menu__nav_btn--active">
           <svg
@@ -43,7 +42,8 @@
               fill="currentColor"
             />
           </svg>
-          Dashboard
+          <a href="/index.html" class="menu__nav_a--active">Dashboard</a>
+
         </button>
         <button>
           <svg
@@ -70,7 +70,8 @@
               fill="currentColor"
             />
           </svg>
-          Transactions
+          <a href="/transactions.html">Transactions</a>
+
         </button>
       </nav>
 
@@ -188,46 +189,20 @@
       </div>
     </aside>
 
+    <div class="nav__hamburger__btn">
+      <input type="checkbox">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="logo">
+      <img src="/assets/logo.svg" alt="logo Bliss-Economy"/>
+
+    </div>
+
     <div class="container">
       <header>
-        <button class="menu__btn__hamburger">
-          <svg
-            width="30"
-            height="15"
-            viewBox="0 0 30 15"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <line
-              x1="1.5"
-              y1="1.5"
-              x2="28.5"
-              y2="1.5"
-              stroke="currentColor"
-              stroke-width="3"
-              stroke-linecap="round"
-            />
-            <line
-              x1="1.5"
-              y1="7.5"
-              x2="28.5"
-              y2="7.5"
-              stroke="currentColor"
-              stroke-width="3"
-              stroke-linecap="round"
-            />
-            <line
-              x1="1.5"
-              y1="13.5"
-              x2="28.5"
-              y2="13.5"
-              stroke="currentColor"
-              stroke-width="3"
-              stroke-linecap="round"
-            />
-          </svg>
-        </button>
-        <img src="/assets/logo.svg" alt="logo Bliss-Economy" class="logo" />
         <button class="menu__btn--hide">
           <svg
             width="31"
@@ -255,7 +230,7 @@
       </header>
 
       <main>
-        <section class="dropDown-content">
+        <section class="animation__dropDown__content">
           <h1>Hello, <span>Darth Vader</span></h1>
           <div class="cards">
             <article class="income">
@@ -333,17 +308,21 @@
           </div>
         </section>
 
-        <section class="dropDown-content">
+        <section class="animation__dropDown__content">
           <h2>Weekly balance</h2>
           <article class="graph">
-            <!-- <img
-              src="/assets/icons/Captura de Tela 2023-03-31 às 16.23.08.png"
-              alt="imagem provisória do grafico"
-            /> -->
+            <select name="graph__range" id="">
+              <option value="Weekly">Weekly</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Yearly">Yearly</option>
+            </select>
+            <div class="chart-container" >
+              <canvas id="myChart"></canva>
+            </div>
           </article>
         </section>
 
-        <section class="transactions dropDown-content">
+        <section class="transactions animation__dropDown__content">
           <h2>Last transactions</h2>
           <article>
             <div class="img">
@@ -489,5 +468,43 @@
 
       
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const ctx = document.getElementById('myChart');
+      
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo'],
+          datasets: [{
+            label: 'expenses',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1,
+            backgroundColor: "#fb6c6c",
+          },
+          {
+            label: 'incomes',
+            data: [4, 7, 22, 6, 10, 30],
+            borderWidth: 1,
+            backgroundColor: "#41d158",
+
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins:{
+              legend: false,
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>
+    <script src="./script.js"></script>
   </body>
 </html>

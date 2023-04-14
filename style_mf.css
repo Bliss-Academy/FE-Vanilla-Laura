@@ -31,6 +31,10 @@ body {
   overflow-y: scroll;
 }
 
+a {
+  text-decoration: none;
+}
+
 .container {
   height: 100%;
   display: flex;
@@ -61,6 +65,18 @@ header button {
   left: 4rem;
 }
 
+.logo {
+  margin-top: 4rem;
+  width: 100%;
+  display: flex;
+  position:absolute;
+  justify-content: center;
+}
+
+.logo img {
+  height: 3.6rem;
+}
+
 main {
   padding: 0 4.5rem;
   display: flex;
@@ -82,7 +98,7 @@ section .cards {
   gap: 2.4rem;
 }
 
-.dropDown-content {
+.animation__dropDown__content {
   animation-name: cardDropDown;
   animation-duration: 1s;
   transition: ease-out;
@@ -136,7 +152,19 @@ main section .cards article div {
 }
 
 .graph {
-  height: 28rem;
+  max-height: 100%;
+  padding: 1.6rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+}
+.graph select {
+  border: none;
+  background-color: var(--GRAY_300);
+  color: var(--PURPLE);
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+  padding: 0.4rem;
+  align-self: flex-end;
 }
 
 section img {
@@ -212,16 +240,159 @@ footer {
   padding-bottom: 1.5rem;
 }
 
-aside {
-  display: none;
+.aside--start {
+  position: absolute;
+  transform: translate(-110%, 0);
 }
 
+aside {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  background-color: var(--GRAY_200);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.25);
+  transform-origin: 0% 0%;
+  transform: translate(100%, 100);
+
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
+
+.aside__header {
+  min-height: 9.2rem;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+aside button {
+  width: 100%;
+  cursor: pointer;
+  background-color: transparent;
+  border: solid 3px none;
+  color: var(--GRAY_400);
+  display: flex;
+  padding: 8px;
+  padding-left: 3.6rem;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 24px;
+  border-left: 3px solid transparent;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+aside a {
+  color: var(--GRAY_400);
+}
+
+aside button:hover,
+.menu__nav_btn--active {
+  border-left: 3px solid var(--GREEN_200);
+  backdrop-filter: brightness(0.9);
+}
+
+aside button:hover svg,
+aside button:hover,
+aside a:hover,
+.menu__nav_btn--active,
+.menu__nav_btn--active svg,
+aside button:hover a,
+.menu__nav_a--active {
+  color: var(--GREEN_200);
+}
+
+aside nav {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+aside svg {
+  color: var(--GRAY_400);
+}
+
+aside div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 1.7rem 1.5rem;
+}
+
+aside div svg {
+  width: 2.4rem;
+}
+
+.nav__hamburger__btn {
+  display: block;
+  position: absolute;
+  top: 4rem;
+  left: 4rem;
+  z-index: 1;
+}
+
+.nav__hamburger__btn input {
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+}
+
+.nav__hamburger__btn span {
+  display: block;
+  width: 3rem;
+  height: 4px;
+  margin-bottom: 2px;
+  position: relative;
+
+  background: var(--GREEN_200);
+  border-radius: 3px;
+
+  z-index: 1;
+
+  transform-origin: 4px 0px;
+
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+}
+
+.nav__hamburger__btn span:first-child {
+  transform-origin: 0% 0%;
+}
+
+.nav__hamburger__btn span:nth-last-child(2) {
+  transform-origin: 0% 100%;
+}
+
+.nav__hamburger__btn input:checked ~ span {
+  opacity: 1;
+  transform: rotate(-45deg) translate(0px, 8px);
+  background: var(--GREEN_200);
+}
+
+.nav__hamburger__btn input:checked ~ span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+.nav__hamburger__btn input:checked ~ span:nth-last-child(2) {
+  transform: rotate(45deg) translate(0, -10px);
+}
 
 @media (min-width: 898px) {
   body {
-    height: 100vh;
     display: flex;
     flex-direction: row;
+    overflow: hidden;
   }
 
   .container {
@@ -243,7 +414,7 @@ aside {
     display: none;
   }
 
-  .menu__btn__hamburger{
+  .menu__btn__hamburger {
     display: none;
   }
 
@@ -264,6 +435,17 @@ aside {
 
   section article {
     flex: 1;
+  }
+
+  article.graph {
+    padding: 1.6rem 2.4rem;
+    min-height: 28rem;
+  }
+
+  .chart-container {
+    display: flex;
+    flex: 1;
+    padding: 0 4.8rem;
   }
 
   .transactions article {
@@ -293,19 +475,28 @@ aside {
     height: 5rem;
   }
 
-  aside {
+  .aside--start {
+    position: relative;
     max-width: 20rem;
     flex: 1;
     background-color: var(--GRAY_200);
     display: flex;
     flex-direction: column;
     box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.25);
+    transform: translate(0%, 0);
   }
 
-  aside .logo {
-    width: 12rem;
-    margin: 1.7rem auto;
-    margin-bottom: 5.2rem;
+  .logo {
+    margin-top: 1.7rem;
+    position: absolute;
+    z-index: 2;
+    max-width: 100%;
+    padding-left: 3.3rem;
+    justify-content: left;
+  }
+
+  .logo img {
+    height: 5.2rem;
   }
 
   aside button {
@@ -325,17 +516,23 @@ aside {
     font-size: 14px;
   }
 
+  aside a {
+    color: var(--GRAY_400);
+  }
+
   aside button:hover,
   .menu__nav_btn--active {
     border-left: 3px solid var(--GREEN_200);
     backdrop-filter: brightness(0.9);
   }
 
-
   aside button:hover svg,
   aside button:hover,
+  aside a:hover,
   .menu__nav_btn--active,
-  .menu__nav_btn--active svg {
+  .menu__nav_btn--active svg,
+  aside button:hover a,
+  .menu__nav_a--active {
     color: var(--GREEN_200);
   }
 
@@ -343,7 +540,7 @@ aside {
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: .8rem;
+    gap: 0.8rem;
   }
 
   aside svg {
@@ -361,9 +558,13 @@ aside {
   aside div svg {
     width: 2.4rem;
   }
+
+  .nav__hamburger__btn {
+    display: none;
+  }
 }
 
-@media(min-width:1216px){
+@media (min-width: 1216px) {
   section .cards {
     margin-right: 0;
     flex-direction: row;
@@ -372,7 +573,6 @@ aside {
 }
 
 @keyframes cardDropDown {
-
   0% {
     opacity: 0;
     position: relative;
@@ -384,5 +584,4 @@ aside {
     position: relative;
     top: 0px;
   }
-  
 }
