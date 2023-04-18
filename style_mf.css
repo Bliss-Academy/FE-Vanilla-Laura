@@ -144,6 +144,18 @@ main section .cards article {
   color: var(--PURPLE);
 }
 
+.value--hide {
+  display: none;
+}
+
+.value--hidden {
+  user-select: none;
+  background-color: var(--GRAY_300);
+  border-radius: 50px;
+  height: 10px;
+  width: 60%;
+}
+
 main section .cards article div {
   display: flex;
   flex-direction: row;
