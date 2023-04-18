@@ -21,7 +21,7 @@
     <aside class="aside--start">
       <header class="aside__header"></header>
       <nav>
-        <button>
+        <a href="/index.html" class="menu__nav_btn">
           <svg
             width="24"
             height="24"
@@ -42,9 +42,13 @@
               fill="currentColor"
             />
           </svg>
-          <a href="/index.html">Dashboard</a>
-        </button>
-        <button class="menu__nav_btn--active">
+          Dashboard
+        </a>
+
+        <a
+          href="/transactions.html"
+          class="menu__nav_btn menu__nav_btn--active"
+        >
           <svg
             width="24"
             height="24"
@@ -69,10 +73,8 @@
               fill="currentColor"
             />
           </svg>
-          <a href="/transactions.html" class="menu__nav_a--active"
-            >Transactions</a
-          >
-        </button>
+          Transactions
+        </a>
       </nav>
 
       <div>
@@ -197,8 +199,7 @@
     </div>
 
     <div class="logo">
-      <img src="/assets/logo.svg" alt="logo Bliss-Economy"/>
-
+      <img src="/assets/logo.svg" alt="logo Bliss-Economy" />
     </div>
 
     <div class="container">
@@ -338,7 +339,7 @@
                 </td>
                 <td class="table__value">€ 10,00</td>
                 <td class="table__action">
-                  <button>
+                  <button class="file__btn">
                     <svg
                       width="18"
                       height="18"
@@ -362,7 +363,7 @@
                       />
                     </svg>
                   </button>
-                  <button>
+                  <button class="edit__btn">
                     <svg
                       width="16"
                       height="16"
@@ -384,7 +385,7 @@
                       />
                     </svg>
                   </button>
-                  <button>
+                  <button class="delete__btn">
                     <svg
                       width="16"
                       height="18"
@@ -426,6 +427,153 @@
       </footer>
     </div>
 
+    <div class="modal modal--close">
+      <section>
+        <h1 class="modal__color">Expense</h1>
+        <button class="modal__btn__close">
+          <svg
+            width="38"
+            height="38"
+            viewBox="0 0 38 38"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.9062 24.0939L24.0943 13.906"
+              stroke="#9D9D9D"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M24.0943 24.0939L13.9062 13.906"
+              stroke="#9D9D9D"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.6 37H24.4C33.4 37 37 33.4 37 24.4V13.6C37 4.6 33.4 1 24.4 1H13.6C4.6 1 1 4.6 1 13.6V24.4C1 33.4 4.6 37 13.6 37Z"
+              stroke="#9D9D9D"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+
+        <div class="modal__content" >
+          <form action="" class="modal__color">
+            <fieldset >
+              <label for="value">Value</label>
+              <input name="value" type="number" placeholder="€ 10,00" />
+            </fieldset>
+            <fieldset>
+              <label for="date">Date</label>
+              <input type="date" placeholder="22/03/2023" />
+            </fieldset>
+            <fieldset>
+              <label for="title">Title</label>
+              <input type="text" placeholder="Market" />
+            </fieldset>
+            <fieldset>
+              <label for="description">Description</label>
+              <textarea name="description" id="" cols="30" rows="10" placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry."></textarea>
+            </fieldset>
+          </form>
+          <div class="attachment modal__color">
+            <p>Attachment</p>
+            <div class="input">
+              <input type="file" />
+              <svg
+              width="86"
+              height="86"
+              viewBox="0 0 86 86"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              >
+              <path
+              d="M31 63V39L23 47"
+              stroke="currentColor"
+              stroke-width="4.58679"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              />
+              <path
+              d="M31 39L39 47"
+              stroke="currentColor"
+                stroke-width="4.58679"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                />
+                <path
+                d="M83 35V55C83 75 75 83 55 83H31C11 83 3 75 3 55V31C3 11 11 3 31 3H51"
+                stroke="currentColor"
+                stroke-width="4.58679"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                />
+              <path
+                d="M83 35H67C55 35 51 31 51 19V3L83 35Z"
+                stroke="currentColor"
+                stroke-width="4.58679"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="modal__btn">
+          <button class="modal__btn__cancel">Cancel</button>
+          <button class="modal__btn__save">Save</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="pop-up pop-up--close">
+      <section>
+        <h1 class="modal__color">Delete Transaction</h1>
+        <button class="pop-up__btn__close">
+          <svg
+            width="38"
+            height="38"
+            viewBox="0 0 38 38"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.9062 24.0939L24.0943 13.906"
+              stroke="#9D9D9D"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M24.0943 24.0939L13.9062 13.906"
+              stroke="#9D9D9D"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M13.6 37H24.4C33.4 37 37 33.4 37 24.4V13.6C37 4.6 33.4 1 24.4 1H13.6C4.6 1 1 4.6 1 13.6V24.4C1 33.4 4.6 37 13.6 37Z"
+              stroke="#9D9D9D"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+
+        <p>Are you sure you want to delete this transaction?</p>
+
+        <div class="pop-up__btn">
+          <button class="pop-up__btn__cancel">Cancel</button>
+          <button class="pop-up__btn__save">Delete</button>
+        </div>
+      </section>
+    </div>
     <script src="./script.js"></script>
   </body>
 </html>

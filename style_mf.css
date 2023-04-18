@@ -42,6 +42,10 @@ a {
   justify-content: space-between;
 }
 
+.container--hide {
+  display: none;
+}
+
 header {
   width: 100%;
   min-height: 9.2rem;
@@ -69,7 +73,7 @@ header button {
   margin-top: 4rem;
   width: 100%;
   display: flex;
-  position:absolute;
+  position: absolute;
   justify-content: center;
 }
 
@@ -128,7 +132,7 @@ main section .cards article {
   padding: 1.2rem 2.4rem 2.7rem;
 }
 
-.income {
+.incomes {
   color: var(--GREEN_100);
 }
 
@@ -267,7 +271,7 @@ aside {
   box-shadow: none;
 }
 
-aside button {
+.menu__nav_btn {
   width: 100%;
   cursor: pointer;
   background-color: transparent;
@@ -284,23 +288,15 @@ aside button {
   font-size: 14px;
 }
 
-aside a {
-  color: var(--GRAY_400);
-}
-
-aside button:hover,
+.menu__nav_btn:hover,
 .menu__nav_btn--active {
   border-left: 3px solid var(--GREEN_200);
   backdrop-filter: brightness(0.9);
 }
 
-aside button:hover svg,
-aside button:hover,
-aside a:hover,
-.menu__nav_btn--active,
+.menu__nav_btn:hover svg,
 .menu__nav_btn--active svg,
-aside button:hover a,
-.menu__nav_a--active {
+.menu__nav_btn--active {
   color: var(--GREEN_200);
 }
 
@@ -313,6 +309,10 @@ aside nav {
 
 aside svg {
   color: var(--GRAY_400);
+}
+
+aside svg:hover {
+  color: var(--GREEN_200);
 }
 
 aside div {
@@ -386,6 +386,170 @@ aside div svg {
 
 .nav__hamburger__btn input:checked ~ span:nth-last-child(2) {
   transform: rotate(45deg) translate(0, -10px);
+}
+
+.modal--close,
+.pop-up--close {
+  display: none;
+}
+
+.modal--open,
+.pop-up--open {
+  background: rgba(109, 109, 109, 0.7);
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal--open section,
+.pop-up section {
+  padding: 6rem 6rem;
+  background-color: var(--GRAY_100);
+
+  border-radius: 2rem;
+
+  width: 50%;
+  min-width: 50rem;
+  scale: 0.75;
+  max-width: 69.5rem;
+
+  position: relative;
+}
+
+.modal__btn__close,
+.pop-up__btn__close {
+  position: absolute;
+  top: 1.6rem;
+  right: 2.4rem;
+}
+
+.modal--open h1,
+.pop-up--open h1 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 32px;
+  margin-bottom: 2.4rem;
+}
+
+.modal--open .modal__content {
+  display: flex;
+  gap: 10rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 50%;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  border: none;
+  gap: 0.4rem;
+}
+
+.modal__color--red {
+  color: var(--RED_100);
+}
+.modal__color--green {
+  color: var(--GREEN_100);
+}
+.modal__color--purple {
+  color: var(--PURPLE);
+}
+
+.modal__content input,
+textarea {
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.5rem 1rem;
+}
+
+.modal__content fieldset:last-child input {
+  height: 10rem;
+  word-break: break-word;
+}
+
+.attachment {
+  width: 50%;
+  text-align: center;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.attachment .input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.attachment input {
+  position: relative;
+  top: 9rem;
+  height: 9rem;
+  width: 9rem;
+  overflow: hidden;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.modal__btn {
+  position: absolute;
+  bottom: 1.6rem;
+  right: 2.4rem;
+}
+
+.modal__btn__cancel,
+.pop-up__btn__cancel {
+  background-color: var(--RED_100);
+  width: 9.4rem;
+  color: white;
+  padding: 0.2rem 2rem;
+  border-radius: 5px;
+  font-size: 1.6rem;
+  margin-right: 1.6rem;
+}
+
+.modal__btn__save,
+.pop-up__btn__save {
+  width: 9.4rem;
+  background-color: var(--GREEN_100);
+  color: white;
+  padding: 0.2rem 2rem;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.pop-up__btn {
+  display: flex;
+  justify-content: center;
+}
+
+.pop-up h1 {
+  margin-bottom: 4rem;
+  color: var(--PURPLE);
+}
+.pop-up p {
+  color: var(--PURPLE);
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 6.8rem;
+}
+
+textarea {
+  resize: none;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Inter', sans-serif;
 }
 
 @media (min-width: 898px) {
@@ -490,7 +654,7 @@ aside div svg {
     margin-top: 1.7rem;
     position: absolute;
     z-index: 2;
-    max-width: 100%;
+    max-width: 50%;
     padding-left: 3.3rem;
     justify-content: left;
   }
@@ -562,6 +726,12 @@ aside div svg {
   .nav__hamburger__btn {
     display: none;
   }
+
+  .modal--open,
+  .pop-up--open {
+    scale: 1.25;
+  }
+
 }
 
 @media (min-width: 1216px) {
