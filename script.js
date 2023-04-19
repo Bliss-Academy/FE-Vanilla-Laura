@@ -6,15 +6,11 @@ const logo = document.querySelector('.logo')
 const incomeBtn = document.querySelector('.income')
 const expenseBtn = document.querySelector('.expense')
 const fileBtn = document.querySelector('.file__btn')
-const editBtn = document.querySelector('.edit__btn')
-const deleteBtn = document.querySelector('.delete__btn')
 const value = document.querySelectorAll('article .value')
 const valueHidden = document.querySelectorAll('article .value--hidden')
 
 const modal = document.querySelector('.modal')
 const popUp = document.querySelector('.pop-up')
-const modalCloseBtn = document.querySelector('.modal__btn__close')
-const popUpCloseBtn = document.querySelector('.pop-up__btn__close')
 const modalColor = document.querySelectorAll('.modal__color')
 
 const hideViewBtn = document.querySelector('.eye--open')
@@ -79,10 +75,19 @@ if(hideViewBtn){
   })
 }
 
-//modal
+// works only on transactions page:
+if (incomeBtn || expenseBtn) {
+  hideViewBtn.style.display = 'none'
 
-function openModal(title) {
+  fileBtn.addEventListener('click', function () {
+    alert('file')
+  })
+}
+
+//modal
+function openModal(title, color) {
   modal.classList.add("modal--open")
+  modalColor.forEach(e => {e.classList.add(`modal__color--${color}`)})
   document.querySelector("body > div.modal.modal--close.modal--open > section > h1").innerHTML=`<h1> ${title} </h1>`
 }
 
@@ -100,39 +105,5 @@ function closeModal() {
 function closePopUp() {
   popUp.classList.remove("pop-up--open")
   popUp.classList.add("pop-up--close")
-}
-
-// works only on transactions page:
-if (incomeBtn || expenseBtn) {
-  incomeBtn.addEventListener('click', function(e) {
-    let title = 'Income'
-    modalColor.forEach(e => {e.classList.add('modal__color--green')})
-    openModal(title)
-  })
-  
-  expenseBtn.addEventListener('click', function(e){
-    let title = 'Expense'
-    modalColor.forEach(e => {e.classList.add('modal__color--red')})
-    openModal(title)
-  })
-
-  hideViewBtn.style.display = 'none'
-
-  fileBtn.addEventListener('click', function () {
-    alert('file')
-  })
-
-  editBtn.addEventListener('click', function(e){
-    let title = 'Edit Transaction'
-    modalColor.forEach(e => {e.classList.add('modal__color--purple')})
-    openModal(title)
-  })
-
-  deleteBtn.addEventListener('click', function () {
-    openPopUp()
-  })
-
-  modalCloseBtn.addEventListener('click', closeModal)
-  popUpCloseBtn.addEventListener('click', closePopUp)
 }
 
