@@ -1,0 +1,14 @@
+{
+  "transactions": [
+    { "id": 1, "isIncome": true, "title": "Paycheck", "description": "march paycheck", "value": 1000, "date": "10/04/2023" },
+    { "id": 2, "isIncome": true, "title": "Bonus", "description": "hardwork bonus", "value": 200, "date": "10/04/2023" },
+    { "id": 3, "isIncome": false, "title": "Market", "description": "monthly supermarket shop", "value": 250, "date": "10/04/2023" },
+    { "id": 4, "isIncome": false, "title": "Pizza", "description": "date night", "value": 17.99, "date": "10/04/2023" },
+    { "id": 5, "isIncome": false, "title": "Movies", "description": "super mario bros ticket", "value": 5.95, "date": "12/04/2023" },
+    { "id": 6, "isIncome": false, "title": "Movies", "description": "popcorn and drinks", "value": 6.75, "date": "12/04/2023" },
+    { "id": 7, "isIncome": false, "title": "Uber", "description": "uber drive movies - home", "value": 6.99, "date": "12/04/2023" },
+    { "id": 8, "isIncome": false, "title": "Netflix", "description": "netflix monthly subscription", "value": 19.99, "date": "15/04/2023" },
+    { "id": 9, "isIncome": false, "title": "Apple music", "description": "apple music monthly subscription", "value": 3.99, "date": "15/04/2023" },
+    { "id": 10, "isIncome": true, "title": "Gift", "description": "grandmas birthday gift card", "value": 200, "date": "15/04/2023" }
+  ]
+}
