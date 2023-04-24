@@ -76,48 +76,10 @@ if (hideViewBtn) {
 }
 
 // works only on transactions page:
-if (incomeBtn || expenseBtn) {
-  hideViewBtn.style.display = 'none'
 
-  fileBtn.addEventListener('click', function () {
-    alert('file')
-  })
-}
 
 //modal
-function openModal(title, color) {
-  modal.classList.add('modal--open')
-  modalColor.forEach((e) => {
-    e.classList.add(`modal__color--${color}`)
-  })
-  document.querySelector(
-    'body > div.modal.modal--close.modal--open > section > h1'
-  ).innerHTML = `<h1> ${title} </h1>`
-}
 
-function openPopUp() {
-  popUp.classList.add('pop-up--open')
-}
-
-function closeModal() {
-  modal.classList.remove('modal--open')
-  modal.classList.add('modal--close')
-  modalColor.forEach((e) => {
-    e.classList.remove(
-      'modal__color--green',
-      'modal__color--red',
-      'modal__color--purple'
-    )
-  })
-  input.forEach((e) => {
-    e.value = ''
-  })
-}
-
-function closePopUp() {
-  popUp.classList.remove('pop-up--open')
-  popUp.classList.add('pop-up--close')
-}
 
 async function fetchAsync(url) {
   let response = await fetch(url)
@@ -155,16 +117,166 @@ function getGeneralInfo() {
       balance.textContent = fixNumber(finalBalance)
     })
     .catch((error) => console.log(error))
+
+  fetchAsync(url)
+    .then((data) => {
+      let latestData = data.reverse()
+      latestData.forEach((item) => {
+        const tableBody = document.querySelector('tbody')
+
+        const newTableRow = document.createElement('tr')
+
+        const tableDate = document.createElement('td')
+        tableDate.classList.add('table__date')
+
+        const date = document.createElement('p')
+        tableDate.appendChild(date)
+        date.textContent = item.date
+
+        const tableDescription = document.createElement('td')
+        tableDescription.classList.add('table__description')
+        tableDescription.innerHTML = `<div>
+        <p>
+          <b>${item.title} - </b>
+          ${item.description}.
+        </p>
+      </div>`
+
+        const tableValue = document.createElement('td')
+        tableValue.classList.add('table__value')
+        const tableSVG = document.createElement('div')
+        if (item.isIncome) {
+          tableSVG.innerHTML = `
+        <svg
+          width="15"
+          height="15"
+          viewBox="0 0 40 40"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20 0C8.96 0 0 8.96 0 20C0 31.04 8.96 40 20 40C31.04 40 40 31.04 40 20C40 8.96 31.04 0 20 0ZM27.06 20.06C26.76 20.36 26.38 20.5 26 20.5C25.62 20.5 25.24 20.36 24.94 20.06L21.5 16.62V27C21.5 27.82 20.82 28.5 20 28.5C19.18 28.5 18.5 27.82 18.5 27V16.62L15.06 20.06C14.48 20.64 13.52 20.64 12.94 20.06C12.36 19.48 12.36 18.52 12.94 17.94L18.94 11.94C19.52 11.36 20.48 11.36 21.06 11.94L27.06 17.94C27.64 18.52 27.64 19.48 27.06 20.06Z"
+            fill="#41D158"
+          />
+        </svg>
+        `
+        } else {
+          tableSVG.innerHTML = `<svg
+        width="15"
+        height="15"
+        viewBox="0 0 40 40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M20 40C31.04 40 40 31.04 40 20C40 8.96 31.04 0 20 0C8.96 0 0 8.96 0 20C0 31.04 8.96 40 20 40ZM12.94 19.94C13.24 19.64 13.62 19.5 14 19.5C14.38 19.5 14.76 19.64 15.06 19.94L18.5 23.38V13C18.5 12.18 19.18 11.5 20 11.5C20.82 11.5 21.5 12.18 21.5 13V23.38L24.94 19.94C25.52 19.36 26.48 19.36 27.06 19.94C27.64 20.52 27.64 21.48 27.06 22.06L21.06 28.06C20.48 28.64 19.52 28.64 18.94 28.06L12.94 22.06C12.36 21.48 12.36 20.52 12.94 19.94Z"
+          fill="#FB6C6C"
+        />
+      </svg>`
+        }
+        const tableValueP = document.createElement('p')
+                const itemValueFormatted = `€ ${item.value.toFixed(2).toString().replace('.', ',')}`        
+        tableValueP.textContent = itemValueFormatted
+        tableValue.appendChild(tableSVG)
+        tableValue.appendChild(tableValueP)
+
+        const tableAction = document.createElement('td')
+        tableAction.classList.add('table__action')
+        tableAction.innerHTML = ` <button class="file__btn">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1 9.816V11.4C1 15.4 2.6 17 6.6 17H11.4C15.4 17 17 15.4 17 11.4V6.6C17 2.6 15.4 1 11.4 1H6.6C2.6 1 1 2.6 1 6.6"
+            stroke="currentColor"
+            stroke-width="1.1"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M9.16072 8.84L8.03264 9.968C7.40864 10.592 7.40864 11.608 8.03264 12.232C8.65664 12.856 9.67264 12.856 10.2966 12.232L12.0727 10.456C13.3207 9.208 13.3207 7.18399 12.0727 5.92799C10.8247 4.67999 8.80064 4.67999 7.54464 5.92799L5.60869 7.864C4.53669 8.936 4.53669 10.672 5.60869 11.744"
+            stroke="currentColor"
+            stroke-width="1.1"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+      <button class="edit__btn" onclick="openModal('Edit Transaction', 'purple')">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10.114 16.0003H5.70062C1.70651 16.0003 0 14.2938 0 10.2997V5.88631C0 1.89219 1.70651 0.185684 5.70062 0.185684H7.17175C7.47333 0.185684 7.72343 0.435776 7.72343 0.737357C7.72343 1.03894 7.47333 1.28903 7.17175 1.28903H5.70062C2.30967 1.28903 1.10335 2.49536 1.10335 5.88631V10.2997C1.10335 13.6906 2.30967 14.897 5.70062 14.897H10.114C13.505 14.897 14.7113 13.6906 14.7113 10.2997V8.82857C14.7113 8.52698 14.9614 8.27689 15.263 8.27689C15.5645 8.27689 15.8146 8.52698 15.8146 8.82857V10.2997C15.8146 14.2938 14.1081 16.0003 10.114 16.0003Z"
+            fill="currentColor"
+          />
+          <path
+            d="M5.33252 12.2784C4.88382 12.2784 4.47191 12.1166 4.17033 11.8224C3.8099 11.462 3.65543 10.9397 3.73634 10.388L4.05264 8.17399C4.11148 7.74736 4.391 7.19569 4.69258 6.89411L10.4888 1.09783C11.9526 -0.365943 13.4384 -0.365943 14.9022 1.09783C15.7039 1.8996 16.0644 2.71607 15.9908 3.53255C15.9246 4.19456 15.5715 4.84185 14.9022 5.50386L9.10593 11.3001C8.80435 11.6017 8.25267 11.8812 7.82605 11.9401L5.61203 12.2564C5.51641 12.2784 5.42079 12.2784 5.33252 12.2784ZM11.2685 1.87753L5.47228 7.6738C5.33252 7.81356 5.17069 8.13721 5.14127 8.32846L4.82498 10.5425C4.79556 10.7558 4.83969 10.9324 4.95003 11.0427C5.06036 11.153 5.2369 11.1972 5.45021 11.1677L7.66422 10.8514C7.85547 10.822 8.18647 10.6602 8.31887 10.5204L14.1151 4.72416C14.5932 4.24605 14.8433 3.81942 14.8801 3.42221C14.9242 2.9441 14.6741 2.43656 14.1151 1.87017C12.9382 0.69327 12.1291 1.02427 11.2685 1.87753Z"
+            fill="currentColor"
+          />
+          <path
+            d="M13.681 6.49667C13.6296 6.49667 13.5781 6.48931 13.5339 6.4746C11.5994 5.93029 10.0621 4.39296 9.51776 2.45842C9.43684 2.1642 9.60602 1.86262 9.90025 1.77435C10.1945 1.69344 10.4961 1.86262 10.577 2.15684C11.0183 3.72359 12.2614 4.9667 13.8282 5.40804C14.1224 5.48895 14.2916 5.79788 14.2107 6.09211C14.1445 6.3422 13.9238 6.49667 13.681 6.49667Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+      <button class="delete__btn" onclick="openPopUp()">
+        <svg
+          width="16"
+          height="18"
+          viewBox="0 0 16 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.3898 4.49704C15.3734 4.49704 15.3488 4.49704 15.3241 4.49704C10.983 4.0621 6.65007 3.89798 2.35815 4.33291L0.68406 4.49704C0.339395 4.52986 0.0357612 4.28367 0.00293596 3.93901C-0.0298893 3.59434 0.2163 3.29892 0.552759 3.26609L2.22685 3.10196C6.59263 2.65882 11.0158 2.83116 15.4472 3.26609C15.7837 3.29892 16.0299 3.60255 15.9971 3.93901C15.9724 4.25905 15.7016 4.49704 15.3898 4.49704Z"
+            fill="currentColor"
+          />
+          <path
+            d="M5.13268 3.66822C5.09986 3.66822 5.06703 3.66822 5.026 3.66002C4.69775 3.60257 4.46797 3.28253 4.52542 2.95427L4.70596 1.87925C4.83726 1.09144 5.0178 0 6.92983 0H9.07989C11.0002 0 11.1807 1.13247 11.3038 1.88745L11.4843 2.95427C11.5418 3.29073 11.312 3.61078 10.9838 3.66002C10.6473 3.71746 10.3272 3.48768 10.278 3.15943L10.0975 2.09261C9.98258 1.37866 9.95796 1.23915 9.08809 1.23915H6.93804C6.0682 1.23915 6.05179 1.35404 5.9287 2.0844L5.73995 3.15122C5.69071 3.45486 5.42811 3.66822 5.13268 3.66822Z"
+            fill="currentColor"
+          />
+          <path
+            d="M10.6387 17.6437H5.37028C2.50628 17.6437 2.39139 16.0598 2.30112 14.7797L1.76771 6.51588C1.74309 6.17942 2.0057 5.884 2.34215 5.85938C2.68682 5.84297 2.97404 6.09736 2.99866 6.43382L3.53207 14.6976C3.62234 15.945 3.65516 16.4127 5.37028 16.4127H10.6387C12.3621 16.4127 12.3949 15.945 12.477 14.6976L13.0104 6.43382C13.035 6.09736 13.3304 5.84297 13.6669 5.85938C14.0033 5.884 14.2659 6.17121 14.2413 6.51588L13.7079 14.7797C13.6176 16.0598 13.5027 17.6437 10.6387 17.6437Z"
+            fill="currentColor"
+          />
+          <path
+            d="M9.36675 13.1301H6.63404C6.29757 13.1301 6.01855 12.8511 6.01855 12.5146C6.01855 12.1782 6.29757 11.8992 6.63404 11.8992H9.36675C9.70321 11.8992 9.98222 12.1782 9.98222 12.5146C9.98222 12.8511 9.70321 13.1301 9.36675 13.1301Z"
+            fill="currentColor"
+          />
+          <path
+            d="M10.056 9.84757H5.95288C5.61642 9.84757 5.3374 9.56856 5.3374 9.2321C5.3374 8.89564 5.61642 8.61662 5.95288 8.61662H10.056C10.3925 8.61662 10.6715 8.89564 10.6715 9.2321C10.6715 9.56856 10.3925 9.84757 10.056 9.84757Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>`
+
+        tableBody.appendChild(newTableRow)
+        newTableRow.appendChild(tableDate)
+        newTableRow.appendChild(tableDescription)
+        newTableRow.appendChild(tableValue)
+        newTableRow.appendChild(tableAction)
+      })
+    })
+    .catch((error) => console.log(error))
 }
 
 function getLastTransactions() {
   const url = 'http://localhost:3000/transactions'
-
   fetchAsync(url)
     .then((data) => {
       let latestData = data.reverse()
       let lastThreeTransactions = []
 
+      //substituir por slice
       for (let i = 0; i < 3; i++) {
         lastThreeTransactions.push(latestData[i])
       }
@@ -180,7 +292,7 @@ function getLastTransactions() {
         const divDateValue = document.createElement('div')
         divDateValue.classList.add('date-value')
 
-        if(transaction.isIncome){
+        if (transaction.isIncome) {
           divImg.innerHTML = `              <svg
           width="40"
           height="40"
@@ -243,12 +355,10 @@ function getLastTransactions() {
         </svg>`
         }
 
-
-
         const title = document.createElement('h3')
         title.textContent = transaction.title
         divInfo.appendChild(title)
-        
+
         const description = document.createElement('p')
         description.textContent = transaction.description
         divInfo.appendChild(description)
@@ -258,8 +368,10 @@ function getLastTransactions() {
         divDateValue.appendChild(date)
 
         const valueCurency = document.createElement('p')
-        valueCurency.innerHTML = `€ <span>${(transaction.value).toFixed(2).toString().replace('.', ',')
-      }</span>`
+        valueCurency.innerHTML = `€ <span>${transaction.value
+          .toFixed(2)
+          .toString()
+          .replace('.', ',')}</span>`
         divDateValue.appendChild(valueCurency)
 
         transactionsSection.appendChild(newArticle)
@@ -271,6 +383,102 @@ function getLastTransactions() {
     .catch((error) => console.log(error))
 }
 
+async function postNewTransaction(data) {
+  const rawResponse = await fetch('http://localhost:3000/transactions', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  const content = await rawResponse.json()
+
+  console.log(content)
+}
+
+function addTransaction() {
+  const inputValue = document.querySelector(
+    '.modal__content input[name=value]'
+  ).value
+  const inputDate = document.querySelector(
+    '.modal__content input[name=date]'
+  ).value
+  const inputTitle = document.querySelector(
+    '.modal__content input[name=title]'
+  ).value
+  const inputDescription = document.querySelector(
+    '.modal__content textarea[name=description]'
+  ).value
+
+  let date = new Date(inputDate)
+  let formatedDate =
+    date.getDate() + 1 + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
+
+  const modalColor = document.querySelector('.modal__color')
+
+  let isIncome
+
+  if (modalColor.classList.contains('modal__color--green')) {
+    isIncome = true
+  } else if (modalColor.classList.contains('modal__color--red')) {
+    isIncome = false
+  }
+
+  let data = {
+    isIncome: isIncome,
+    title: inputTitle,
+    description: inputDescription,
+    value: Number(inputValue),
+    date: formatedDate
+  }
+
+  postNewTransaction(data)
+}
+
 getGeneralInfo()
 
 getLastTransactions()
+
+if (incomeBtn || expenseBtn) {
+  hideViewBtn.style.display = 'none'
+
+  fileBtn.addEventListener('click', function () {
+    alert('file')
+  })
+}
+
+function openModal(title, color) {
+  modal.classList.add('modal--open')
+  modalColor.forEach((e) => {
+    e.classList.add(`modal__color--${color}`)
+  })
+  document.querySelector(
+    'body > div.modal.modal--close.modal--open > section > h1'
+  ).innerHTML = `<h1> ${title} </h1>`
+}
+
+function openPopUp() {
+  popUp.classList.add('pop-up--open')
+}
+
+function closeModal() {
+  modal.classList.remove('modal--open')
+  modal.classList.add('modal--close')
+  modalColor.forEach((e) => {
+    e.classList.remove(
+      'modal__color--green',
+      'modal__color--red',
+      'modal__color--purple'
+    )
+  })
+  input.forEach((e) => {
+    e.value = ''
+  })
+}
+
+function closePopUp() {
+  popUp.classList.remove('pop-up--open')
+  popUp.classList.add('pop-up--close')
+}
+// https://firebase.google.com/pricing
